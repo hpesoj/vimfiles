@@ -32,7 +32,7 @@ set smartcase
 colorscheme mustang
 let g:load_doxygen_syntax = 1
 syntax on
-set guifont=Consolas:h9,DejaVu_Sans_Mono:h8
+set guifont=DejaVu_Sans_Mono:h8,Consolas:h9
 set number
 set nowrap
 highlight OverLength ctermbg=red ctermfg=white guibg=#A92929
