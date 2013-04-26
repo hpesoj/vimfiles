@@ -8,45 +8,8 @@ else
 endif
 
 "-------------------------------------------------------------------------------
-" Windows commands
-"-------------------------------------------------------------------------------
-autocmd GUIEnter * simalt ~x " Maximised on launch
-
-"-------------------------------------------------------------------------------
-" Turn off GUI menubar and toolbar
-"-------------------------------------------------------------------------------
-set guioptions-=m
-set guioptions-=T
-
-"-------------------------------------------------------------------------------
-" Search settings
-"-------------------------------------------------------------------------------
-set hlsearch
-set ignorecase
-set incsearch
-set smartcase
-
-"-------------------------------------------------------------------------------
-" Display settings
-"-------------------------------------------------------------------------------
-colorscheme mustang
-let g:load_doxygen_syntax = 1
-syntax on
-set guifont=DejaVu_Sans_Mono:h8,Consolas:h9
-set number
-set nowrap
-highlight OverLength ctermbg=red ctermfg=white guibg=#A92929
-match OverLength /\%81v.\+/
-set ruler
-
-if version >= 703
-    set colorcolumn=81
-endif
-
-"-------------------------------------------------------------------------------
 " System settings
 "-------------------------------------------------------------------------------
-set nocompatible
 set backspace=2
 filetype off
 filetype plugin on
@@ -105,9 +68,48 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'vim-scripts/sessionman.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 " MatchParen slows down cursor movement on network drives.
 "autocmd VimEnter * NoMatchParen
+
+"-------------------------------------------------------------------------------
+" Windows commands
+"-------------------------------------------------------------------------------
+autocmd GUIEnter * simalt ~x " Maximised on launch
+
+"-------------------------------------------------------------------------------
+" Turn off GUI menubar and toolbar
+"-------------------------------------------------------------------------------
+set guioptions-=m
+set guioptions-=T
+
+"-------------------------------------------------------------------------------
+" Search settings
+"-------------------------------------------------------------------------------
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+
+"-------------------------------------------------------------------------------
+" Display settings
+"-------------------------------------------------------------------------------
+set background=light
+colorscheme vc
+let g:load_doxygen_syntax = 1
+syntax on
+set guifont=DejaVu_Sans_Mono:h8,Consolas:h9
+set number
+set nowrap
+highlight OverLength ctermbg=red ctermfg=white guibg=#A92929
+match OverLength /\%81v.\+/
+set ruler
+
+if version >= 703
+    set colorcolumn=81
+endif
+
 
 "-------------------------------------------------------------------------------
 " Custom mappings
