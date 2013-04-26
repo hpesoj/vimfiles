@@ -95,8 +95,8 @@ set smartcase
 "-------------------------------------------------------------------------------
 " Display settings
 "-------------------------------------------------------------------------------
-set background=light
-colorscheme vc
+set background=dark
+colorscheme mustang
 let g:load_doxygen_syntax = 1
 syntax on
 set guifont=DejaVu_Sans_Mono:h8,Consolas:h9
