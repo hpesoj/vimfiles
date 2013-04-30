@@ -117,8 +117,8 @@ endif
 :let mapleader = ","
 
 " Map the return key to insert blank lines
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+nmap <S-Enter> O<C-c>
+nmap <CR> o<C-c>
 
 " Open vimrc
 execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
@@ -127,7 +127,7 @@ execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 
 " Map escape key to clear search highlighting
-:nnoremap <Esc> :let @/ = ""<CR><Esc>
+:nnoremap <C-c> :let @/ = ""<CR><C-c>
 
 " Remove trailing whitespace
 :autocmd FileType cpp,c,h,xml,txt,sp,frag,vert,java autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -142,9 +142,10 @@ nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 vnoremap < <gv
 vnoremap > >gv
 
-" Map key combination to Esc
-inoremap kj <Esc>
+" Disable escape key
 inoremap <Esc> <NOP>
+nnoremap <Esc> <NOP>
+cnoremap <Esc> <NOP>
 
 "-------------------------------------------------------------------------------
 " Plugin options
