@@ -1,0 +1,157 @@
+##############
+# C Snippets #
+##############
+
+# Include
+snippet include
+	#include <${1:header}.h>  // ${2:Reason}
+# While loop
+snippet while
+	while (${1:condition})
+	{
+		${2:/* body */}
+	}
+# For loop
+snippet for
+	for (int ${2:i} = 0; $2 < ${1:count}; ++$2)
+	{
+		${3:/* body */}
+	}
+# If statement
+snippet if
+	if (${1:condition})
+	{
+		${2:/* body */}
+	}
+# Else if statement
+snippet elseif
+	else if (${1:condition})
+	{
+		${2:/* body */}
+	}
+# Else statement
+snippet else
+	else
+	{
+		${2:/* body */}
+	}
+# Switch statement
+snippet switch
+	switch (${1:value})
+	{
+		${2:/* body */}
+	}
+# Case statement
+snippet case
+	case ${1:/* constant */}:
+	{
+		${2:/* body */}
+		break;
+	}
+# Enum
+snippet enum
+	enum ${1:Enum}
+	{
+		${2:/* body */}
+	};
+# Struct
+snippet struct
+	struct ${1:Struct}
+	{
+		${2:/* body */}
+	};
+# Function
+snippet function
+	${1:void} ${2:function}(${3})
+	{
+		${2:/* body */}
+	};
+# Main function
+snippet main
+	void main()
+	{
+		${1:/* body */}
+		return 0;
+	};
+# Block comment
+snippet /*
+	/*
+	 * ${1:Comment}
+	 */
+# Doxygen block comment
+snippet /**
+	/**
+	 * ${1:Comment}
+	 */
+
+################
+# C++ Snippets #
+################
+
+# std::deque
+snippet deque
+	typedef std::deque<${1:T}> ${2}Deque;
+# std::list
+snippet list
+	typedef std::list<${1:T}> ${2}List;
+# std::map
+snippet map
+	typedef std::map<${1:Key}, ${2:T}> ${3}Map;
+# std::set
+snippet set
+	typedef std::set<${1:T}> ${2}Set;
+# std::vector
+snippet vector
+	typedef std::vector<${1:T}> ${2}Vector;
+# std::string
+snippet string
+	std::string {$1:variable};
+# static_cast
+snippet sc
+	static_cast<${1:int}>(${2:value})
+# dynamic_cast
+snippet dc
+	dynamic_cast<${1:T}>(${2:value})
+# const_cast
+snippet cc
+	const_cast<${1:T}>(${2:value})
+# reinterpret_cast
+snippet rc
+	reinterpret_cast<${1:T}>(${2:value})
+# Namespace
+snippet ns
+	namespace ${1:ns}
+	{
+		${2:/* body */}
+	} // namespace $1
+# For loop with static_cast to int
+snippet forsc
+	for (int ${2:i} = 0; $2 < static_cast<int>(${1:count}); ++$2)
+	{
+		${3:/* body */}
+	}
+# Iterator for loop
+snippet forit
+	for (${1:Container}::iterator it = ${2:container}.begin(); it != $2.end(); ++it)
+	{
+		${3:/* body */}
+	}
+# Class
+snippet class
+	class ${1:Class}
+	{
+	public:
+		${2:/* public members */}
+
+	private:
+		${3:/* private members */}
+	};
+# Template
+snippet template
+	template<typename ${1:T}>
+# Method
+snippet method
+	${1:void} ${2:Class}::${3:function}(${4})
+	{
+		${5:/* body */}
+	};
