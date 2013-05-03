@@ -5,6 +5,9 @@ else
     let vimfiles = ".vim"
 endif
 
+" Change the leader character
+let mapleader = ","
+
 " Configure Vundle plugin manager
 execute 'set rtp+=~/' . vimfiles . '/bundle/vundle'
 call vundle#rc('~/' . vimfiles . '/bundle')
@@ -27,10 +30,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'vim-scripts/sessionman.vim'
 
+" Colour schemes
+Bundle 'altercation/vim-colors-solarized'
+
 " Plugin-specific options
 autocmd SessionLoadPost * silent PowerlineReloadColorscheme  " Keep colours
 let g:Powerline_symbols = 'compatible'  " Disable fancy symbols for Powerline
-nmap <Leader>t :NERDTree<CR>  " Quick open for NERDTree
+map <Leader>t :NERDTree<CR>  " Quick open for NERDTree
 map <F11> <C-c>:call libcallnr('gvimfullscreen.dll', 'ToggleFullScreen', 0)<CR>
 
 " Editor appearance
@@ -52,12 +58,11 @@ if version >= 703
     set colorcolumn=81
 endif
 
+syntax enable  " Use default syntax highlighting
+set background=dark  " Use a light colour scheme
+colorscheme solarized  " Set to a cool colour scheme
 autocmd GUIEnter * simalt ~x " Maximise window on launch
-colorscheme mustang  " Set to a cool colour scheme
 let g:load_doxygen_syntax = 1  " Enable doxygen syntax highlighting
-syntax on  " Use default syntax highlighting
-highlight OverLength ctermbg=red ctermfg=white guibg=#A92929  " Overflow colour
-match OverLength /\%81v.\+/  " Mark overflowing lines
 
 " Text input
 set backspace=2  " Make backspace delete over lines
@@ -73,24 +78,22 @@ set smartcase  " Case sensitive search only if term includes upper-case
 
 " Remove trailing whitespace on save
 autocmd FileType
-            \ c,h,cpp,hpp,  " C and C++ files
-            \ java, " Java files
-            \ py,  " Python files
-            \ ap,mat,sp,frag,vert  " Script files
-            \ xml,txt,bat,cfg,  " Other text files
+            \ c,h,cpp,hpp,
+            \java,
+            \py,
+            \ap,mat,sp,frag,vert
+            \xml,txt,bat,cfg,
             \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " File type identification
 autocmd BufRead,BufNewFile
-            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,  " Shader files
-            \ *.ap,*.mat,*.sp  " Script files
+            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,
+            \*.ap,*.mat,*.sp
             \ set filetype=.c
 
 autocmd BufRead,BufNewFile
-            \ *.i  " SWIG files
+            \ *.i
             \ set filetype=.cpp
-
-
 
 " Other editor behaviour
 set completeopt=menu,menuone,longest  " Disable preview scratch window
@@ -107,13 +110,12 @@ filetype plugin indent on  " Turn on all file type detection
 " Ignored filesystem names
 set wildignore+=
             \*.swp,*.bak,
-            \*doxygen*,  " Doxygen directory
-            \*/Debug/*,*/Release/*,*/runtime/*,  " Build directories
-            \*.ncb,*.suo,*.user,*.class,*.pyc " Build files
+            \*doxygen*,
+            \*/Debug/*,*/Release/*,*/runtime/*,
+            \*.ncb,*.suo,*.user,*.class,*.pyc,*.obj,
             \*.glo,*.png,*.bmp,*.jpg  " Asset files
 
 " Custom mappings
-let mapleader = ","
 
 " Disable escape key
 inoremap <Esc> <NOP>
