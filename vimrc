@@ -25,6 +25,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/bufkill.vim'
@@ -36,8 +37,8 @@ Bundle 'altercation/vim-colors-solarized'
 " Plugin-specific options
 autocmd SessionLoadPost * silent PowerlineReloadColorscheme  " Keep colours
 let g:Powerline_symbols = 'compatible'  " Disable fancy symbols for Powerline
-map <Leader>t :NERDTree<CR>  " Quick open for NERDTree
-map <F11> <C-c>:call libcallnr('gvimfullscreen.dll', 'ToggleFullScreen', 0)<CR>
+let g:NERDTreeWinSize = 45  " Set default NERDTree window width
+let g:gundo_right = 1  " Open Gundo window on the right hand side
 
 " Editor appearance
 set encoding=utf-8  " Use unicode
@@ -142,5 +143,14 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 
+" Set fullscreen
+map <F11> <C-c>:call libcallnr('gvimfullscreen.dll', 'ToggleFullScreen', 0)<CR>
+
 " Open vimrc
 execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
+
+" Quick open for NERDTree
+map <Leader>t :NERDTreeToggle<CR>
+
+" Quick open for Gundo
+map <Leader>g :GundoToggle<CR>
