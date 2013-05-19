@@ -41,8 +41,13 @@ let g:NERDTreeWinSize = 45  " Set default NERDTree window width
 let g:gundo_right = 1  " Open Gundo window on the right hand side
 
 " Editor appearance
+if has("win32")
+    set guifont=DejaVu_Sans_Mono:h8,Consolas:h9  " Preferred fonts
+else
+    set guifont=DejaVuSansMono\ 10  " Preferred fonts
+endif
+
 set encoding=utf-8  " Use unicode
-set guifont=DejaVu_Sans_Mono:h8,Consolas:h9  " Preferred fonts
 set guioptions-=r  " Don't show right scrollbar
 set guioptions-=R  " Don't show right scrollbar when split window
 set guioptions-=l  " Don't show left scrollbar
@@ -62,7 +67,6 @@ endif
 syntax enable  " Use default syntax highlighting
 set background=dark  " Use a light colour scheme
 colorscheme solarized  " Set to a cool colour scheme
-autocmd GUIEnter * simalt ~x " Maximise window on launch
 let g:load_doxygen_syntax = 1  " Enable doxygen syntax highlighting
 
 " Text input
