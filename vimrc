@@ -82,12 +82,7 @@ set incsearch  " React to search while typing
 set smartcase  " Case sensitive search only if term includes upper-case
 
 " Remove trailing whitespace on save
-autocmd FileType
-            \ c,h,cpp,hpp,
-            \java,
-            \py,
-            \ap,mat,sp,frag,vert
-            \xml,txt,bat,cfg,
+autocmd FileType c,cpp,java,python,xml,dosbatch,cfg
             \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " File type identification
@@ -121,11 +116,6 @@ set wildignore+=
             \*.glo,*.png,*.bmp,*.jpg  " Asset files
 
 " Custom mappings
-
-" Disable escape key
-inoremap <Esc> <NOP>
-nnoremap <Esc> <NOP>
-cnoremap <Esc> <NOP>
 
 " Map escape key to clear search highlighting
 nnoremap <C-c> :let @/ = ""<CR><C-c>
