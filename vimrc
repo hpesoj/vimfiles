@@ -9,13 +9,14 @@ endif
 let mapleader = ","
 
 " Configure Vundle plugin manager
-execute 'set rtp+=~/' . vimfiles . '/bundle/vundle'
+execute 'set rtp+=~/' . vimfiles . '/bundle/Vundle.vim'
 call vundle#rc('~/' . vimfiles . '/bundle')
 
 " Make Vundle manage itself
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 
 " Specify plugins to install
+Bundle 'KuoE0/vim-janitor'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -23,15 +24,19 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'derekmcloughlin/gvimfullscreen_win32'
 Bundle 'garbas/vim-snipmate'
 Bundle 'kien/ctrlp.vim'
+Bundle 'nfvs/vim-perforce'
+Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'vim-scripts/sessionman.vim'
 
 " Colour schemes
+Bundle 'Addisonbean/Vim-Xcode-Theme'
 Bundle 'altercation/vim-colors-solarized'
 
 " Plugin-specific options
@@ -39,10 +44,16 @@ autocmd SessionLoadPost * silent PowerlineReloadColorscheme  " Keep colours
 let g:Powerline_symbols = 'compatible'  " Disable fancy symbols for Powerline
 let g:NERDTreeWinSize = 45  " Set default NERDTree window width
 let g:gundo_right = 1  " Open Gundo window on the right hand side
+let g:perforce_open_on_change = 1  " Prompt for checkout on change
+let g:janitor_enable_highlight = 0  " Do not highlight trailing whitespace
+let g:janitor_auto_clean_up_on_write = 1  " Strip whitespace on save
+let g:janitor_auto_clean_up_trailing_space_only_added = 1  " Only changed lines
 
-" Editor appearance
+" Editor appearance'
 if has("win32")
     set guifont=DejaVu_Sans_Mono:h8,Consolas:h9  " Preferred fonts
+elseif has("mac")
+    set guifont="SF Mono"\ 10  " Preferred fonts
 else
     set guifont=DejaVuSansMono\ 10  " Preferred fonts
 endif
@@ -72,18 +83,14 @@ let g:load_doxygen_syntax = 1  " Enable doxygen syntax highlighting
 " Text input
 set backspace=2  " Make backspace delete over lines
 set expandtab  " Insert spaces instead of tabs
-set shiftwidth=4  " Set the indentation width
-set tabstop=4  " Number of spaces per tab
+set shiftwidth=2  " Set the indentation width
+set tabstop=2  " Number of spaces per tab
 
 " Search
 set hlsearch  " Highlight all search matches
 set ignorecase  " Case-insensitive search
 set incsearch  " React to search while typing
 set smartcase  " Case sensitive search only if term includes upper-case
-
-" Remove trailing whitespace on save
-autocmd FileType c,cpp,java,python,xml,dosbatch,cfg
-            \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " File type identification
 autocmd BufRead,BufNewFile
@@ -117,8 +124,17 @@ set wildignore+=
 
 " Custom mappings
 
+nnoremap <Leader>yy :YcmCompleter GoTo<CR>
+nnoremap <Leader>yu :YcmCompleter GoToImprecise<CR>
+nnoremap <Leader>yh :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>yc :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>yr :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>yx :YcmCompleter GoToImplementationElseDeclaration<CR>
+
 " Map escape key to clear search highlighting
-nnoremap <C-c> :let @/ = ""<CR><C-c>
+nnoremap <C-c> :let @/ = ""<CR><Esc>
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
 
 " Map the return key to insert blank lines
 nmap <S-Enter> O<C-c>
@@ -145,6 +161,7 @@ execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
 
 " Quick open for NERDTree
 map <Leader>t :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind<CR>
 
 " Quick open for Gundo
 map <Leader>g :GundoToggle<CR>
