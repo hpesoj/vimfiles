@@ -1,3 +1,7 @@
+"----------
+" Vimfiles
+"==========
+
 " Useful variables
 if has("win32")
     let vimfiles = "vimfiles"
@@ -5,51 +9,43 @@ else
     let vimfiles = ".vim"
 endif
 
-" Change the leader character
-let mapleader = ","
+"---------
+" Plugins
+"=========
 
 " Configure Vundle plugin manager
 execute 'set rtp+=~/' . vimfiles . '/bundle/Vundle.vim'
 call vundle#rc('~/' . vimfiles . '/bundle')
 
 " Make Vundle manage itself
-Bundle 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Specify plugins to install
-Bundle 'KuoE0/vim-janitor'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'derekmcloughlin/gvimfullscreen_win32'
-Bundle 'garbas/vim-snipmate'
-Bundle 'kien/ctrlp.vim'
-Bundle 'nfvs/vim-perforce'
-Bundle 'ntpeters/vim-better-whitespace'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/gundo.vim'
-Bundle 'tomtom/tlib_vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'vim-scripts/sessionman.vim'
+Plugin 'KuoE0/vim-janitor'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'chrisbra/Colorizer'
+Plugin 'garbas/vim-snipmate'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lyuts/vim-rtags'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'nfvs/vim-perforce'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'sjl/gundo.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 
-" Colour schemes
-Bundle 'Addisonbean/Vim-Xcode-Theme'
-Bundle 'altercation/vim-colors-solarized'
+"------------
+" Appearance
+"============
 
-" Plugin-specific options
-autocmd SessionLoadPost * silent PowerlineReloadColorscheme  " Keep colours
-let g:Powerline_symbols = 'compatible'  " Disable fancy symbols for Powerline
-let g:NERDTreeWinSize = 45  " Set default NERDTree window width
-let g:gundo_right = 1  " Open Gundo window on the right hand side
-let g:perforce_open_on_change = 1  " Prompt for checkout on change
-let g:janitor_enable_highlight = 0  " Do not highlight trailing whitespace
-let g:janitor_auto_clean_up_on_write = 1  " Strip whitespace on save
-let g:janitor_auto_clean_up_trailing_space_only_added = 1  " Only changed lines
-
-" Editor appearance'
 if has("win32")
     set guifont=DejaVu_Sans_Mono:h8,Consolas:h9  " Preferred fonts
 elseif has("mac")
@@ -70,15 +66,53 @@ set guioptions-=m  " Don't show menu
 set laststatus=2  " Always show the status bar
 set nowrap  " Do not wrap lines
 set number  " Show line numbers
+set completeopt=menu,menuone,longest  " Disable preview scratch window
 
 if version >= 703
     set colorcolumn=81
 endif
 
+" Colour scheme and syntax highlighting
 syntax enable  " Use default syntax highlighting
-set background=dark  " Use a light colour scheme
 colorscheme solarized  " Set to a cool colour scheme
+set background=dark  " Use a dark colour scheme
 let g:load_doxygen_syntax = 1  " Enable doxygen syntax highlighting
+
+"---------
+" Buffers
+"=========
+
+autocmd BufRead,BufNewFile
+            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,
+            \*.ap,*.mat,*.sp
+            \ set filetype=.c
+
+autocmd BufRead,BufNewFile
+            \ *.i
+            \ set filetype=.cpp
+
+filetype plugin indent on  " Turn on all file type detection
+set hidden  " Change buffers without saving!
+set fileformats=unix,dos  " Make new files have unix line endings
+set noswapfile  " Don't use swap files (slow over network)
+
+" Ignored filesystem names
+set wildignore+=
+            \*.swp,*.bak,
+            \*doxygen*,
+            \*/Debug/*,*/Release/*,*/runtime/*,
+            \*.ncb,*.suo,*.user,*.class,*.pyc,*.obj,
+            \*.glo,*.png,*.bmp,*.jpg  " Asset files
+
+"------------------
+" Custom Behaviour
+"==================
+
+" General settings
+set history=1000  " Increase command history
+set pumheight=15  " Max items in autocomplete menu
+set viminfo='1000,f1,:1000,/50,@50,!  " Increase viminfo storage!
+set wildmenu  " Display command line completion list
 
 " Text input
 set backspace=2  " Make backspace delete over lines
@@ -92,53 +126,16 @@ set ignorecase  " Case-insensitive search
 set incsearch  " React to search while typing
 set smartcase  " Case sensitive search only if term includes upper-case
 
-" File type identification
-autocmd BufRead,BufNewFile
-            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,
-            \*.ap,*.mat,*.sp
-            \ set filetype=.c
+" Change the leader character
+let mapleader = ","
 
-autocmd BufRead,BufNewFile
-            \ *.i
-            \ set filetype=.cpp
+" Open vimrc
+execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
 
-" Other editor behaviour
-set completeopt=menu,menuone,longest  " Disable preview scratch window
-set fileformats=unix,dos  " Make new files have unix line endings
-set hidden  " Change buffers without saving!
-set history=1000  " Increase command history
-set noswapfile  " Don't use swap files (slow over network)
-set pumheight=15  " Max items in autocomplete menu
-set viminfo='1000,f1,:1000,/50,@50,!  " Increase viminfo storage!
-set wildmenu  " Display command line completion list
-
-filetype plugin indent on  " Turn on all file type detection
-
-" Ignored filesystem names
-set wildignore+=
-            \*.swp,*.bak,
-            \*doxygen*,
-            \*/Debug/*,*/Release/*,*/runtime/*,
-            \*.ncb,*.suo,*.user,*.class,*.pyc,*.obj,
-            \*.glo,*.png,*.bmp,*.jpg  " Asset files
-
-" Custom mappings
-
-nnoremap <Leader>yy :YcmCompleter GoTo<CR>
-nnoremap <Leader>yu :YcmCompleter GoToImprecise<CR>
-nnoremap <Leader>yh :YcmCompleter GoToDeclaration<CR>
-nnoremap <Leader>yc :YcmCompleter GoToDefinition<CR>
-nnoremap <Leader>yr :YcmCompleter GoToReferences<CR>
-nnoremap <Leader>yx :YcmCompleter GoToImplementationElseDeclaration<CR>
-
-" Map escape key to clear search highlighting
+" Ctrl-C literally means Escape
 nnoremap <C-c> :let @/ = ""<CR><Esc>
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
-
-" Map the return key to insert blank lines
-nmap <S-Enter> O<C-c>
-nmap <CR> o<C-c>
 
 " Search for selected word or word under cursor
 nnoremap <Leader>s yiw:%s/0//gc<Left><Left><Left>
@@ -153,15 +150,52 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 
-" Set fullscreen
-map <F11> <C-c>:call libcallnr('gvimfullscreen.dll', 'ToggleFullScreen', 0)<CR>
+"----------------------
+" Plugin Configuration
+"======================
+"
+" CamelCaseMotion
+call camelcasemotion#CreateMotionMappings('<leader>')
 
-" Open vimrc
-execute 'nmap <Leader>v :e $HOME/' . vimfiles . '/vimrc<CR>'
+" Colorizer
+let g:colorizer_auto_filetype='vim,css,html,cpp,hpp,c,h'
 
-" Quick open for NERDTree
-map <Leader>t :NERDTreeToggle<CR>
-map <Leader>f :NERDTreeFind<CR>
-
-" Quick open for Gundo
+" Gundo
+let g:gundo_right = 1  " Open Gundo window on the right hand side
 map <Leader>g :GundoToggle<CR>
+
+" Janitor
+let g:janitor_enable_highlight = 0  " Do not highlight trailing whitespace
+let g:janitor_auto_clean_up_on_write = 1  " Clean code on save
+let g:janitor_auto_clean_up_trailing_space_only_added = 1  " Strip whitespace
+
+" NERDTree
+let g:NERDTreeWinSize = 45  " Set default NERDTree window width
+map <Leader>f :NERDTreeFind<CR>
+map <Leader>t :NERDTreeToggle<CR>
+
+" Perforce
+let g:perforce_prompt_on_open = 0  " Do not prompt to open
+nnoremap <Leader>p4e :P4edit<CR>
+nnoremap <Leader>p4i :P4info<CR>
+nnoremap <Leader>p4m :P4movetocl<CR>
+nnoremap <Leader>p4r :P4revert<CR>
+
+" Powerline
+autocmd SessionLoadPost * silent PowerlineReloadColorscheme  " Keep colours
+let g:Powerline_symbols = 'fancy'  " Disable fancy symbols for Powerline
+
+" Session
+let g:session_autoload = 'yes'  " Automatically load default session
+let g:session_autosave = 'yes'  " Automatically save default session
+
+" YouCompleteMe
+let g:ycm_confirm_extra_conf = 0  " Do not prompt to load YCM config
+let g:ycm_global_ycm_extra_conf = '~/' . vimfiles . '/.ycm_extra_conf.py'
+nnoremap <Leader>yy :YcmCompleter GoTo<CR>
+nnoremap <Leader>yh :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>yc :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>yx :YcmCompleter GoToImplementationElseDeclaration<CR>
+nnoremap <Leader>yu :YcmCompleter GoToImprecise<CR>
+nnoremap <Leader>yr :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>yq :YcmRestartServer<CR>
