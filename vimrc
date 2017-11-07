@@ -28,8 +28,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bkad/CamelCaseMotion'
 Plugin 'chrisbra/Colorizer'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
-Plugin 'kien/ctrlp.vim'
 Plugin 'lyuts/vim-rtags'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nfvs/vim-perforce'
@@ -39,6 +39,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-surround'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 
@@ -83,7 +84,7 @@ let g:load_doxygen_syntax = 1  " Enable doxygen syntax highlighting
 "=========
 
 autocmd BufRead,BufNewFile
-            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,
+            \ *.glsl,*.hlsl,*.fs,*.vs,*.vert,*.frag,*.vert.block,*.frag.block,
             \*.ap,*.mat,*.sp
             \ set filetype=.c
 
@@ -100,7 +101,7 @@ set noswapfile  " Don't use swap files (slow over network)
 set wildignore+=
             \*.swp,*.bak,
             \*doxygen*,
-            \*/Debug/*,*/Release/*,*/runtime/*,
+            \*/Debug/*,*/Release/*,*/Output/*,*/runtime/*,*/Build/*,
             \*.ncb,*.suo,*.user,*.class,*.pyc,*.obj,
             \*.glo,*.png,*.bmp,*.jpg  " Asset files
 
@@ -156,6 +157,10 @@ endfunction
 "
 " CamelCaseMotion
 call camelcasemotion#CreateMotionMappings('<leader>')
+
+" CtrlP
+let g:ctrlp_by_filename = 1 " Filename mode by default
+let g:ctrlp_match_window = 'max:20' " Show up to 20 results
 
 " Colorizer
 let g:colorizer_auto_filetype='vim,css,html,cpp,hpp,c,h'
