@@ -21,15 +21,12 @@ call vundle#rc('~/' . vimfiles . '/bundle')
 Plugin 'VundleVim/Vundle.vim'
 
 " Specify plugins to install
-Plugin 'KuoE0/vim-janitor'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'bkad/CamelCaseMotion'
 Plugin 'chrisbra/Colorizer'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'garbas/vim-snipmate'
+Plugin 'kuoe0/vim-janitor'
 Plugin 'lyuts/vim-rtags'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nfvs/vim-perforce'
@@ -42,6 +39,11 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+
+" Colour schemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'morhetz/gruvbox'
 
 "------------
 " Appearance
@@ -101,7 +103,7 @@ set noswapfile  " Don't use swap files (slow over network)
 set wildignore+=
             \*.swp,*.bak,
             \*doxygen*,
-            \*/Debug/*,*/Release/*,*/Output/*,*/runtime/*,*/Build/*,
+            \*/Debug/*,*/Release/*,*/Output/*,*/runtime/*,
             \*.ncb,*.suo,*.user,*.class,*.pyc,*.obj,
             \*.glo,*.png,*.bmp,*.jpg  " Asset files
 
@@ -120,6 +122,7 @@ set backspace=2  " Make backspace delete over lines
 set expandtab  " Insert spaces instead of tabs
 set shiftwidth=2  " Set the indentation width
 set tabstop=2  " Number of spaces per tab
+set softtabstop=2  " Number of spaces per tab
 
 " Search
 set hlsearch  " Highlight all search matches
@@ -163,7 +166,10 @@ let g:ctrlp_by_filename = 1 " Filename mode by default
 let g:ctrlp_match_window = 'max:20' " Show up to 20 results
 
 " Colorizer
-let g:colorizer_auto_filetype='vim,css,html,cpp,hpp,c,h'
+let g:colorizer_auto_filetype = 'vim,css,html,cpp,hpp,c,h'
+
+" Gruvbox
+let g:gruvbox_contrast_dark = 'soft'
 
 " Gundo
 let g:gundo_right = 1  " Open Gundo window on the right hand side
