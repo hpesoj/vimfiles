@@ -105,10 +105,8 @@ let mapleader = ","
 " Open vimrc
 execute 'nmap <Leader>v :e ' . vim_path . '/vimrc<CR>'
 
-" Ctrl-C literally means Escape
-nnoremap <C-c> :let @/ = ""<CR><Esc>
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
+" Clear search highlighting with escape.
+nnoremap <Esc> :let @/ = ""<CR><Esc>
 
 " Word search
 nnoremap <Leader>s yiw:%s/0//gc<Left><Left><Left>
