@@ -9,6 +9,7 @@ call plug#begin(vim_path . '/plugged')
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bkad/CamelCaseMotion'
+Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rhysd/vim-clang-format'
@@ -19,9 +20,10 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-if has("unix")
+if has("win32")
+  Plug 'junegunn/fzf'
+else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
 endif
 
 call plug#end()
@@ -70,6 +72,7 @@ set expandtab " Insert spaces instead of tabs
 set shiftwidth=4 " Set the indentation width
 set tabstop=4 " Number of spaces per tab
 set softtabstop=4 " Number of spaces per tab
+set backspace=2 " Normal backspace behaviour
 
 " Search
 set hlsearch " Highlight all search matches
@@ -167,7 +170,8 @@ command! -bang -nargs=* AgCpp call fzf#vim#ag(<q-args>, '--cpp', s:fzf_options, 
 command! -bang -nargs=* AgJava call fzf#vim#ag(<q-args>, '--java', s:fzf_options, <bang>0)
 command! -bang -nargs=* AgPython call fzf#vim#ag(<q-args>, '--python', s:fzf_options, <bang>0)
 
-map <C-s><C-c> :AgCpp<CR>
+map <C-s><C-s> :Ag<CR>
+map <C-s><C-d> :AgCpp<CR>
 map <C-s><C-j> :AgJava<CR>
 map <C-s><C-m> :AgCMake<CR>
 map <C-s><C-p> :AgPython<CR>
