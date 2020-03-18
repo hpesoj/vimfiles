@@ -59,7 +59,6 @@ syntax enable
 " Editor behaviour
 filetype plugin indent on
 set encoding=utf-8
-set fileformats=unix,dos
 set hidden
 set history=1000
 set noswapfile
@@ -69,9 +68,9 @@ set wildmenu
 
 " Text input
 set expandtab " Insert spaces instead of tabs
-set shiftwidth=4 " Set the indentation width
-set tabstop=4 " Number of spaces per tab
-set softtabstop=4 " Number of spaces per tab
+set shiftwidth=2 " Set the indentation width
+set tabstop=2 " Number of spaces per tab
+set softtabstop=2 " Number of spaces per tab
 set backspace=2 " Normal backspace behaviour
 
 " Search
@@ -141,6 +140,7 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 
 " vim-clang-format
 let g:clang_format#auto_format = 1
+let g:clang_format#code_style = 'WebKit'
 
 " Colorizer
 let g:colorizer_auto_filetype = 'vim,css,html,cpp,hpp,c,h'
