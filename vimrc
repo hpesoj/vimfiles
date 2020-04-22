@@ -17,6 +17,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -45,7 +46,7 @@ set guioptions-=m
 colorscheme solarized
 let g:load_doxygen_syntax = 1
 set background=dark
-set colorcolumn=101
+set colorcolumn=121
 set laststatus=2
 set nowrap
 set number
@@ -109,11 +110,11 @@ vnoremap <Leader>s y:%s/0//gc<Left><Left><Left>
 nnoremap <Leader><Leader>s yiw:%s/\<0\>//gc<Left><Left><Left>
 vnoremap <Leader><Leader>s y:%s/\<0\>//gc<Left><Left><Left>
 " Word search: case sensitive
-nnoremap <Leader>S yiw:%s/0//gc<Left><Left><Left>
-vnoremap <Leader>S y:%s/0//gc<Left><Left><Left>
+nnoremap <Leader>S yiw:%s/\C0//gc<Left><Left><Left>
+vnoremap <Leader>S y:%s/\C0//gc<Left><Left><Left>
 " Word search: whole word; case sensitive
-nnoremap <Leader><Leader>S yiw:%s/\<0\>//gc<Left><Left><Left>
-vnoremap <Leader><Leader>S y:%s/\<0\>//gc<Left><Left><Left>
+nnoremap <Leader><Leader>S yiw:%s/\C\<0\>//gc<Left><Left><Left>
+vnoremap <Leader><Leader>S y:%s/\C\<0\>//gc<Left><Left><Left>
 
 " Change-paste operator
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
@@ -135,6 +136,7 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 
 " vim-clang-format
 let g:clang_format#auto_format = 1
+let g:clang_format#command = "clang-format"
 let g:clang_format#code_style = 'WebKit'
 
 " Colorizer
@@ -146,11 +148,13 @@ let g:fzf_preview_window = ''
 map <C-p> :Files<CR>
 map <C-s><C-s> :Rg<CR>
 
-" Gundo
-let g:gundo_right = 1  " Open Gundo window on the right hand side
-map <Leader>g :GundoToggle<CR>
+" Git
+map <Leader>gb :Gblame<CR>
+map <Leader>gd :Gdiffsplit<CR>
+map <Leader>gl :Glog<CR>
 
 " NERDTree
-let g:NERDTreeWinSize = 45  " Set default NERDTree window width
-map <Leader>f :NERDTreeFind<CR>
+let g:NERDTreeWinSize = 45
+let g:NERDTreeMinimalUI = 1
 map <Leader>t :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind<CR>
